@@ -1,7 +1,10 @@
 // Projeto para o desafio de Super Trunfo para Faculdade (Estácio)
 // Autor: Adriano Santos
+// Nivel: Aventureiro
 // Obs: O comando system("cls") da pau se usado no VScode, ele limpa a tela mas o terminal do VScode fica ilegível.
 //      Para dar certo tem que rodar o executável direto no terminal ou comentar o comando. 
+
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,6 +17,8 @@ typedef struct
     float area;           // Área da cidade
     float pib;            // Produto Interno Bruto (PIB) da cidade
     int pontosTuristicos; // Número de pontos turísticos
+    float densidadePop;
+    float perCapta;
 } CartaCidade;
 
 int main()
@@ -41,7 +46,7 @@ int main()
 cadastrar:
     if (incremento < 32 && acao == 's')
     {
-        system("clear");
+        system("cls");
         printf("*************************************\n");
         printf("* Super Trunfo - Cadastro de cartas *\n");
         printf("*************************************\n\n");
@@ -61,6 +66,9 @@ cadastrar:
         printf("Pontos turisticos da cidade: ");
         scanf("%d", &cartas[incremento].pontosTuristicos);
 
+        cartas[incremento].densidadePop =  cartas[incremento].populacao / cartas[incremento].area;
+        cartas[incremento].perCapta =  cartas[incremento].pib / cartas[incremento].populacao;
+
         printf("Digite s para cadastrar outra carta ou n para listar: ");
         scanf(" %c", &acao);
         
@@ -78,7 +86,7 @@ cadastrar:
 
 // Exibição dos dados das cartas cadastradas
 listar:    
-    system("clear");
+    system("cls");
     printf("*************************************\n");
     printf("* Super Trunfo - Listagem de Cartas *\n");
     printf("*************************************\n\n");
@@ -90,6 +98,8 @@ listar:
         printf("Area: %.2f km^2\n", cartas[i].area);
         printf("PIB: %.2f\n", cartas[i].pib);
         printf("Pontos Turisticos: %d\n", cartas[i].pontosTuristicos);
+        printf("Renda Percapta: %.2f\n", cartas[i].perCapta);
+        printf("Densidade: %.2f\n", cartas[i].densidadePop);
         printf("\n");
     }
 
